@@ -62,7 +62,10 @@ class PaymentController extends StorefrontController
     private function findTransaction(OrderEntity $order): ?array
     {
         $orderNote = base64_encode($order->getOrderNumber());
-        $transactions = $this->algoExplorerApi->getTransactionsWithNotePrefix($order->getOrderNumber());
+        $transactions = $this->algoExplorerApi->getTransactionsWithNotePrefixWithAlgos(
+            $order->getOrderNumber(),
+            (float) $order->getCustomFields()['algorand_payment_price']
+        );
 
         foreach($transactions as $transaction) {
             if (!array_key_exists('note', $transaction)) {

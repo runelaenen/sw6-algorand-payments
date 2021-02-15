@@ -75,6 +75,6 @@ class AlgorandPayment implements AsynchronousPaymentHandlerInterface
 
     private function getAlgoPrice(OrderEntity $order): float
     {
-        return $order->getAmountTotal() / $this->priceApi->getPrice('USD');
+        return $order->getAmountTotal() / $this->priceApi->getPrice('USD'); // TODO: Multiple currencies
     }
 }

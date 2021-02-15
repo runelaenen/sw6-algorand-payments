@@ -36,6 +36,14 @@ class AlgoExplorerApi
         return json_decode((string) $response->getBody(), true)['transactions'];
     }
 
+    public function getTransactionsWithNotePrefixWithAlgos(string $notePrefix, float $algos)
+    {
+        $response = $this->client->get(
+            $this->endpoint . 'idx2/v2/accounts/' . $this->systemConfigService->get('AlgorandPayments.config.walletAddress') . '/transactions?currency-greater-than=' . ((int)($algos*1000000)) . '&note-prefix=' . base64_encode($notePrefix)
+        );
+        return json_decode((string) $response->getBody(), true)['transactions'];
+    }
+
     public function getEndpoint(): string
     {
         if ($this->systemConfigService->get('AlgorandPayments.config.nodeSettings') === 'main') {
