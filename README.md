@@ -63,3 +63,15 @@ redirected automatically. But for the sake of this POC, I left that out of scope
 As soon as the customer clicks, we reload the page and ask the AlgoExplorer API to list all transactions that are for 
 the correct wallet address, have the correct note, and have actually paid enough. As soon as such a transaction exists,
 we mark the order as paid, and redirect the customer to the success page.
+
+### Improvements
+As repeated some times in this readme, this plugin is a POC. It could use some improvements before it's actually
+usable. This is a small 'roadmap' for anyone who would like to build on this:
+ - Implement more currencies, currently only USD is supported
+ - Implement a better security between the payment page, and the Shopware return url. Currenctly the payment status is passed through a GET parameter.
+ - Improve the payment screen in the frontend
+ - Add live reloading in the payment screen by polling the api. (I would rewrite this to call the API asynchronously, so the payment also gets processed in the background if the customer closes his browser)
+ - Rewrite usage of AlgoExplorer api to still only call it at the most once every few seconds, even if a hundred orders happen at once. (This can be done by loading the transactions, caching, and filtering them server-side instead of using the filters of the API)
+ - ...
+
+Any PRs are welcome ;-)
