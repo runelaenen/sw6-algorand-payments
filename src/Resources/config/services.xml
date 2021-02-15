@@ -1,0 +1,38 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Price API's -->
+        <service id="AlgorandPayments\Service\AlgorandPriceApi\BinanceApi">
+            <tag name="algorand_payments.price_api" key="binance"/>
+            <argument type="service" id="shopware.app_system.guzzle"/>
+        </service>
+
+
+        <service id="AlgorandPayments\Service\AlgoExplorerApi">
+            <argument type="service" id="shopware.app_system.guzzle"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+
+        <service id="AlgorandPayments\Service\AlgorandPayment">
+            <tag name="shopware.payment.method.async" />
+            <argument type="service" id="router"/>
+            <argument type="service" id="Shopware\Core\Checkout\Order\Aggregate\OrderTransaction\OrderTransactionStateHandler"/>
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="AlgorandPayments\Service\AlgorandPriceApi"/>
+        </service>
+
+        <service id="AlgorandPayments\Service\AlgorandPriceApi">
+            <argument type="tagged_locator" tag="algorand_payments.price_api" index-by="key" />
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+        </service>
+
+        <service id="AlgorandPayments\Controller\PaymentController" public="true">
+            <argument type="service" id="order.repository"/>
+            <argument type="service" id="AlgorandPayments\Service\AlgoExplorerApi"/>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,18 @@
+{
+  "name": "swag/plugin-skeleton",
+  "description": "Algorand Payment plugin for Shopware 6",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "AlgorandPayments\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "AlgorandPayments\\AlgorandPayments",
+    "label": {
+      "de-DE": "Algorand Payment plugin",
+      "en-GB": "Algorand Payment plugin"
+    }
+  }
+}

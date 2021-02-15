@@ -1,0 +1,29 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_body_classes %}{{ parent() }} bg-light d-flex justify-content-center align-items-center" style="min-height: 100vh;{% endblock %}
+{% block base_body_inner %}
+    <div class="bg-white border p-3">
+        <strong class="text-center d-block border-bottom pb-2 mb-3">Algorand payment</strong>
+        Send your payment of <strong>{{ algorandPrice|round(6) }} ALGO</strong> to our address:<br/>
+        <br/>
+        <div class="text-center p-3">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data={{ shopware.config.AlgorandPayments.config.walletAddress }}"/>
+        </div>
+        <input type="text" class="form-control d-block" style="min-width: 560px;" readonly="readonly"
+               value="{{ shopware.config.AlgorandPayments.config.walletAddress }}"/><br/>
+        With note:
+        <input type="text" class="form-control d-block" style="min-width: 560px;" readonly="readonly"
+               value="{{ orderNumber }}"/><br/>
+        <br/>
+        {% if showNoTransactionFoundError %}
+            No transaction found yet. Try again in a few seconds!
+        {% endif %}
+        <form method="POST">
+            <input type="hidden" name="check" value="1" />
+            {{ sw_csrf('frontend.checkout.algorand.payment') }}
+            <button type="submit" class="btn btn-success float-right">
+                Paid? Click here to check payment status
+            </button>
+        </form>
+    </div>
+{% endblock %}
