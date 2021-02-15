@@ -29,7 +29,17 @@ another API altogether.
 For testing purpouses, the plugin can be configured to use the TestNet network. Use the official Algorand wallet app
 to give yourself some Algorand, so you can test out the integration.
 
-### Configration
+### Setup and configuration
+#### Shopware install
+Clone the plugin to it's folder under `/custom/plugins/AlgorandPayments` in your Shopware installation. Run the following
+commands in the CLI, or follow the needed steps in the admin.
+```bash
+bin/console plugin:refresh
+bin/console plugin:install --activate AlgorandPayments
+bin/console cache:clear
+```
+
+#### Configuration
 It's very simple to get this plugin up and running, as there are only 3 configuration fields.
 
 1. Node settings: You can choose wether to use the MainNet or TestNet.
