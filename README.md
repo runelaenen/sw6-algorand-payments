@@ -4,6 +4,8 @@ This Shopware 6 plugin is a **proof of concept**, and should probably not be use
 
 Check out the POC in this 1:23 minute Youtube video: https://youtu.be/vx6k7O2ZwEQ
 
+The plugin can be tested (with TestNet payments) on https://sw6.laenen.me/
+
 ![Algorand payments](https://user-images.githubusercontent.com/3930922/107990907-c80dd900-6fd5-11eb-87b0-7379fb74205a.png)
 
 Shopware is a European e-commerce platform which powers over 100.000 webshops across the world. Since the launch of
